@@ -22,20 +22,21 @@
         </div>
         <div class="row">
             <div class="col-3">
-                <form method="POST" action="http://127.0.0.1:5000/add_user">
+                <form method="POST" action="{{url_for('add_user')}}">
                     <div class="row">
                         <h3>Add Users</h3>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <!-- <label for="name" class="form-label">Name</label> -->
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                         </div>
                         <div class="mb-3">
-                            <label for="tel" class="form-label">Telephone no.</label>
-                            <input type="text" class="form-control" id="tel" name="tel">
+                            <!-- <label for="tel" class="form-label">Telephone no.</label> -->
+                            <input type="text" class="form-control" id="tel" name="tel" placeholder="Telephone no.">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <!-- <label for="email" class="form-label">Email address</label> -->
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Email address">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -59,9 +60,8 @@
                             <td>{{ user.tel }}</td>
                             <td>{{ user.email }}</td>
                             <td>
-                                <a href="http://127.0.0.1:5000/edit_user?id={{ user.user_id }}"
-                                    class="btn btn-secondary">Edit</a>
-                                <a href="http://127.0.0.1:5000/del_user?id={{ user.user_id }}" class="btn btn-danger"
+                                <a href="/edit_user/{{ user.user_id }}" class="btn btn-secondary">Edit</a>
+                                <a href="/del_user/{{ user.user_id }}" class="btn btn-danger"
                                     onclick="return confirm('Do you want to delete?')">Delete</a>
 
                             </td>
@@ -71,6 +71,18 @@
                 </table>
             </div>
         </div>
+        <br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <hr>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
         <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
