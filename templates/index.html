@@ -43,7 +43,7 @@
             </div>
             <div class="col">
                 <h3 class="mb-3">User Info</h3>
-                <table class="table" id="example">
+                <table class="table" id="list_users">
                     <thead>
                         <tr>
                             <th scope="col">Name</th>
@@ -62,7 +62,7 @@
                                 <a href="http://127.0.0.1:5000/edit_user?id={{ user.user_id }}"
                                     class="btn btn-secondary">Edit</a>
                                 <a href="http://127.0.0.1:5000/del_user?id={{ user.user_id }}" class="btn btn-danger"
-                                    onclick="confirm('Do you want to delete?')">Delete</a>
+                                    onclick="return confirm('Do you want to delete?')">Delete</a>
 
                             </td>
                         </tr>
@@ -80,7 +80,7 @@
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('#example').DataTable();
+                $('#list_users').DataTable();
             });
         </script>
 
